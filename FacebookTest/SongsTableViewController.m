@@ -117,7 +117,12 @@
     
     cell.songNameLabel.text = song.title;
     cell.artistNameLabel.text = song.artist;
-    cell.voteButton.tag = indexPath.row;
+    cell.upvoteButton.tag = indexPath.row;
+    cell.downvoteButton.tag = indexPath.row;
+    
+    [cell.upvoteButton setTitle:[NSMutableString stringWithFormat:@"%ld U", (long)song.upvoteCount] forState:UIControlStateNormal];
+    
+    [cell.downvoteButton setTitle:[NSMutableString stringWithFormat:@"%ld D", (long)song.downvoteCount] forState:UIControlStateNormal];
     
     // Configure the cell...
     return cell;

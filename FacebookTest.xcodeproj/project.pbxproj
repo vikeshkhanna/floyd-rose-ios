@@ -22,7 +22,6 @@
 		3E53FD3719EA86C400A90685 /* SongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E53FD3619EA86C400A90685 /* SongsTableViewController.m */; };
 		3E53FD3A19EA896400A90685 /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E53FD3919EA896400A90685 /* SongTableViewCell.m */; };
 		3E53FD3D19EDDB1500A90685 /* SongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E53FD3C19EDDB1500A90685 /* SongModel.m */; };
-		3E594B5E19FA27C600615B03 /* VoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E594B5D19FA27C600615B03 /* VoteButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +63,6 @@
 		3E53FD3919EA896400A90685 /* SongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
 		3E53FD3B19EDDB1500A90685 /* SongModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongModel.h; sourceTree = "<group>"; };
 		3E53FD3C19EDDB1500A90685 /* SongModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongModel.m; sourceTree = "<group>"; };
-		3E594B5C19FA27C600615B03 /* VoteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoteButton.h; sourceTree = "<group>"; };
-		3E594B5D19FA27C600615B03 /* VoteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,8 +178,6 @@
 				3E53FD3619EA86C400A90685 /* SongsTableViewController.m */,
 				3E53FD3819EA896400A90685 /* SongTableViewCell.h */,
 				3E53FD3919EA896400A90685 /* SongTableViewCell.m */,
-				3E594B5C19FA27C600615B03 /* VoteButton.h */,
-				3E594B5D19FA27C600615B03 /* VoteButton.m */,
 			);
 			name = Songs;
 			sourceTree = "<group>";
@@ -296,7 +291,6 @@
 				3E53FD2F19EA437B00A90685 /* Utils.m in Sources */,
 				3E53FD0019E891AD00A90685 /* main.m in Sources */,
 				3E53FD3719EA86C400A90685 /* SongsTableViewController.m in Sources */,
-				3E594B5E19FA27C600615B03 /* VoteButton.m in Sources */,
 				3E53FD2C19EA0BBC00A90685 /* ShowModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

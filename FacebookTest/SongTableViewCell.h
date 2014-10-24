@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SongTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *upvoteButton;
 @property (weak, nonatomic) IBOutlet UILabel *songNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *downvoteButton;
 @property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *voteButton;
-@property (weak, nonatomic) IBOutlet UILabel *voteLabel;
 @end

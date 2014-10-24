@@ -112,41 +112,34 @@
         <scene sceneID="pL0-DT-cnb">
             <objects>
                 <tableViewController id="6vX-X1-Kmo" customClass="SongsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="QGt-iX-8Qp">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="QGt-iX-8Qp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" rowHeight="64" id="GDh-B2-kNB" customClass="SongTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" rowHeight="65" id="GDh-B2-kNB" customClass="SongTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GDh-B2-kNB" id="GSr-3s-BTn">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6T-HJ-1ch">
-                                            <rect key="frame" x="8" y="34" width="171" height="21"/>
+                                            <rect key="frame" x="8" y="36" width="171" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Di-mo-zJQ">
                                             <rect key="frame" x="8" y="8" width="91" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+5/-10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIC-Oo-kNf">
-                                            <rect key="frame" x="260" y="35" width="52" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVZ-Tx-0GC">
-                                            <rect key="frame" x="250" y="6" width="62" height="23"/>
-                                            <color key="backgroundColor" red="0.0018422947300000001" green="0.70659722219999999" blue="0.1780310266" alpha="1" colorSpace="calibratedRGB"/>
-                                            <rect key="contentStretch" x="0.050000000000000017" y="0.0" width="1" height="1"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kyr-Fj-f45">
+                                            <rect key="frame" x="273" y="29" width="39" height="28"/>
+                                            <color key="backgroundColor" red="0.84339488640000004" green="0.049823778579999999" blue="0.12289164280000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <inset key="contentEdgeInsets" minX="1" minY="1" maxX="1" maxY="1"/>
-                                            <state key="normal" title="Upvote">
+                                            <state key="normal" title="25 D">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -155,17 +148,29 @@
                                                     <integer key="value" value="4"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="vote:" destination="6vX-X1-Kmo" eventType="touchUpInside" id="6mZ-je-3yQ"/>
-                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4j-0e-TcZ">
+                                            <rect key="frame" x="226" y="29" width="39" height="28"/>
+                                            <color key="backgroundColor" red="0.0018422947300000001" green="0.70659722219999999" blue="0.1780310266" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <inset key="contentEdgeInsets" minX="1" minY="1" maxX="1" maxY="1"/>
+                                            <state key="normal" title="25 U">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="artistNameLabel" destination="p6T-HJ-1ch" id="lSQ-Dm-EWd"/>
+                                    <outlet property="downvoteButton" destination="Kyr-Fj-f45" id="34m-rr-ewg"/>
                                     <outlet property="songNameLabel" destination="0Di-mo-zJQ" id="qV2-QH-JJG"/>
-                                    <outlet property="voteButton" destination="oVZ-Tx-0GC" id="rjG-Ld-FoV"/>
-                                    <outlet property="voteLabel" destination="IIC-Oo-kNf" id="coY-di-X5D"/>
+                                    <outlet property="upvoteButton" destination="c4j-0e-TcZ" id="EWW-D4-4MX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

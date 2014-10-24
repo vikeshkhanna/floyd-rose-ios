@@ -15,6 +15,22 @@
     self.title = [jsonResponse valueForKey:@"name"];
     self.artist = [jsonResponse valueForKey:@"artist"];
     
+    NSArray* votes = [jsonResponse valueForKey:@"votes"];
+    NSMutableArray * selfVotes = [[NSMutableArray alloc] init];
+    self.upvoteCount = 0;
+    self.downvoteCount = 0;
+    
+    for (id vote in votes) {
+        NSDictionary* voteDict = (NSDictionary *) vote;
+        NSInteger voteInt = [[voteDict objectForKey:@"vote"] integerValue];
+        [selfVotes addObject:[NSNumber numberWithInt:voteInt]];
+    
+        self.upvoteCount += (voteInt == +1);
+        self.downvoteCount += (voteInt == -1);
+    }
+    
+    self.votes = selfVotes;
     return self;
 }
+
 @end
