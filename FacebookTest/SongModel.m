@@ -14,16 +14,18 @@
     self.spotify_uri = [jsonResponse valueForKey:@"spotify_uri"];
     self.title = [jsonResponse valueForKey:@"name"];
     self.artist = [jsonResponse valueForKey:@"artist"];
+    self.pk = [jsonResponse valueForKey:@"_id"];
     
     NSArray* votes = [jsonResponse valueForKey:@"votes"];
-    NSMutableArray * selfVotes = [[NSMutableArray alloc] init];
+    NSMutableDictionary * selfVotes = [[NSMutableDictionary alloc] init];
     self.upvoteCount = 0;
     self.downvoteCount = 0;
     
     for (id vote in votes) {
         NSDictionary* voteDict = (NSDictionary *) vote;
         NSInteger voteInt = [[voteDict objectForKey:@"vote"] integerValue];
-        [selfVotes addObject:[NSNumber numberWithInt:voteInt]];
+        NSString *userId = [voteDict objectForKey:@"user"];
+        [selfVotes setObject:[NSNumber numberWithInt:voteInt] forKey:userId];
     
         self.upvoteCount += (voteInt == +1);
         self.downvoteCount += (voteInt == -1);

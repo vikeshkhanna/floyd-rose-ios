@@ -10,9 +10,10 @@
 
 @interface SongModel : NSObject
 @property (strong, nonatomic) NSString *spotify_uri;
+@property (strong, nonatomic) NSString *pk;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *artist;
-@property (strong, nonatomic) NSArray *votes;
+@property (strong, nonatomic) NSDictionary *votes;
 @property (nonatomic) NSInteger upvoteCount;
 @property (nonatomic) NSInteger downvoteCount;
 

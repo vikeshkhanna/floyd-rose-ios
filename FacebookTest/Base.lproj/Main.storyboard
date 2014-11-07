@@ -108,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="1413" y="471"/>
         </scene>
-        <!--Songs Table View Controller-->
+        <!--Songs-->
         <scene sceneID="pL0-DT-cnb">
             <objects>
                 <tableViewController id="6vX-X1-Kmo" customClass="SongsTableViewController" sceneMemberID="viewController">
@@ -148,6 +148,9 @@
                                                     <integer key="value" value="4"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="vote:" destination="6vX-X1-Kmo" eventType="touchUpInside" id="xJ4-Nj-U1R"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4j-0e-TcZ">
                                             <rect key="frame" x="226" y="29" width="39" height="28"/>
@@ -163,6 +166,9 @@
                                                     <integer key="value" value="4"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="vote:" destination="6vX-X1-Kmo" eventType="touchUpInside" id="Kca-cs-ypX"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -179,7 +185,9 @@
                             <outlet property="delegate" destination="6vX-X1-Kmo" id="8o8-Ti-kiq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zct-Pe-4si"/>
+                    <navigationItem key="navigationItem" title="Songs" id="zct-Pe-4si">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="G8v-vx-g4V"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rui-vx-bv5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

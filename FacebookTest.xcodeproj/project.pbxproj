@@ -63,6 +63,7 @@
 		3E53FD3919EA896400A90685 /* SongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
 		3E53FD3B19EDDB1500A90685 /* SongModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongModel.h; sourceTree = "<group>"; };
 		3E53FD3C19EDDB1500A90685 /* SongModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongModel.m; sourceTree = "<group>"; };
+		3E594B621A00367500615B03 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +119,7 @@
 				3E53FCFD19E891AD00A90685 /* Supporting Files */,
 				3E53FD2D19EA437B00A90685 /* Utils.h */,
 				3E53FD2E19EA437B00A90685 /* Utils.m */,
+				3E594B621A00367500615B03 /* Constants.h */,
 			);
 			path = FacebookTest;
 			sourceTree = "<group>";

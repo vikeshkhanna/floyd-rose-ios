@@ -8,6 +8,9 @@
 
 #import "LoginViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "Constants.h"
+
+#define LOGIN_URL @"http://localhost:3000/login"
 
 @interface LoginViewController()
 @property (weak, nonatomic) IBOutlet FBLoginView *fbLoginView;
@@ -29,10 +32,55 @@
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                                 user:(id<FBGraphUser>)user {
-    NSLog(user.name);
-    NSLog(user.id);
-    // Perform segue
-    [self performSegueWithIdentifier:@"loginSegue" sender:self];
+    // At this point, user is logged into Facebook and his information is available.
+    NSLog(@"%@", user.name);
+    NSLog(@"%@", user.id);
+    
+    NSString *img = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?redirect=true", user.id];
+    
+    NSDictionary *requestBodyDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                           user.name, @"name",
+                                           user.id, @"id",
+                                           img, @"img",
+                                           nil];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:LOGIN_URL]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:API_SECRET forHTTPHeaderField:@"x-authentication"];
+    [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:requestBodyDictionary options:NSJSONWritingPrettyPrinted error:nil]];
+     
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * response,
+                                               NSData * responseData,
+                                               NSError * error) {
+                               if (error) {
+                                   NSLog(@"Error: %@", [error localizedDescription]);
+                               } else {
+                                   // This will get the NSURLResponse into NSHTTPURLResponse format
+                                   NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+                                   NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:nil error:nil];
+                                   
+                                   // This will Fetch the status code from NSHTTPURLResponse object
+                                   int responseStatusCode = [httpResponse statusCode];
+                                   
+                                   if (responseStatusCode == 200) {
+                                       // Save user id in nsuserdefaults
+                                       NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                       
+                                       [defaults setObject:user.id forKey:USER_ID_KEY];
+                                       [defaults setObject:user.name forKey:USER_NAME_KEY];
+                                       [defaults setObject:img forKey:USER_IMG_KEY];
+                                       [defaults synchronize];
+                                       
+                                       // Perform segue
+                                       [self performSegueWithIdentifier:@"loginSegue" sender:self];
+                                   } else {
+                                       NSLog(@"Couldn't login. Status code: %d", responseStatusCode);
+                                   }
+                               }
+                           }];
 }
 
 - (void) loginViewShowingLoggedInUser:(FBLoginView *)loginView {

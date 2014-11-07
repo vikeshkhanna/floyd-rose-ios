@@ -11,16 +11,17 @@
 #import "SongsTableViewController.h"
 #import "ShowModel.h"
 #import "SongTableViewCell.h"
+#import "Constants.h"
+#import "Utils.h"
+#import "SongModel.h"
+
 
 @interface SongsTableViewController ()
 @property (strong, nonatomic) ShowModel *show;
+- (void) voteForSongWithId : (NSString *)songId withVote: (NSInteger)vote onCompletion:(void (^)( NSHTTPURLResponse*, NSData*, NSError*))completionBlock;
 @end
 
 @implementation SongsTableViewController
-
-- (IBAction)vote:(UIButton *)sender {
-    NSLog(@"Voting");
-}
 
 - (void) setCurrentShow:(ShowModel *)show {
     self.show = show;
@@ -72,18 +73,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // TODO: Do async
-    NSArray *fetchedSongs = [self fetchSongs];
-    
-    if (fetchedSongs != nil) {
-        self.songs = fetchedSongs;
-    }
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(fetchAndSetSongs)
+                  forControlEvents:UIControlEventValueChanged];
+
+    [self fetchAndSetSongs];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     NSLog(@"My show: %@", self.show);
+}
+
+- (void) fetchAndSetSongs {
+    NSLog(@"Fetching and setting songs");
+    
+    // TODO: Do async
+    NSArray *fetchedSongs = [self fetchSongs];
+    
+    if (fetchedSongs != nil) {
+        self.songs = fetchedSongs;
+    }
+    
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,18 +131,73 @@
     }
     
     SongModel *song = [self.songs objectAtIndex:indexPath.row];
-    
-    cell.songNameLabel.text = song.title;
-    cell.artistNameLabel.text = song.artist;
+    // Configure the cell...
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.song = song;
     cell.upvoteButton.tag = indexPath.row;
     cell.downvoteButton.tag = indexPath.row;
-    
-    [cell.upvoteButton setTitle:[NSMutableString stringWithFormat:@"%ld U", (long)song.upvoteCount] forState:UIControlStateNormal];
-    
-    [cell.downvoteButton setTitle:[NSMutableString stringWithFormat:@"%ld D", (long)song.downvoteCount] forState:UIControlStateNormal];
-    
-    // Configure the cell...
     return cell;
+}
+
+- (IBAction)vote:(UIButton *)sender {
+    NSInteger index = sender.tag;
+    SongModel *song = [self.songs objectAtIndex:index];
+    SongTableViewCell* cell = (SongTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    
+    int voteValue = 0;
+    
+    if (sender == cell.upvoteButton) {
+        voteValue = 1;
+    } else if (sender == cell.downvoteButton) {
+        voteValue = -1;
+    }
+    
+    NSLog(@"Upvoting song: %@", song.title);
+    
+    [self voteForSongWithId:song.pk withVote:voteValue onCompletion:^(NSHTTPURLResponse *httpResponse, NSData* responseData, NSError *error) {
+        
+        // sender.enabled = NO;
+        long responseStatusCode = [httpResponse statusCode];
+        if (error) {
+            NSLog(@"Error: %@", [error localizedDescription]);
+        } else {
+            // This will Fetch the status code from NSHTTPURLResponse object
+            if (responseStatusCode == 200) {
+                NSLog(@"Voted!");
+                // Çreate the new songModel and set it to
+                NSDictionary *songDictionary =
+                [NSJSONSerialization JSONObjectWithData:responseData
+                                                options:0
+                                                  error:NULL];
+                SongModel* song = [[SongModel alloc] initFromDictionary:[songDictionary objectForKey:@"response"]];
+                if (cell) {
+                    cell.song = song;
+                }
+            } else {
+                NSLog(@"Couldn't upvote. Status code: %ld", responseStatusCode);
+            }
+        }
+    }];
+}
+
+
+- (void) voteForSongWithId : (NSString *)songId withVote: (NSInteger)vote onCompletion:(void (^)(NSHTTPURLResponse*, NSData*, NSError*))completionBlock {
+    
+    NSString *voteUrl = [NSString stringWithFormat:VOTE_URL_FORMAT, songId, vote];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:voteUrl]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * response,
+                                               NSData * responseData,
+                                               NSError * error) {
+                                NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+                                dispatch_async(dispatch_get_main_queue(), ^ {
+                                    completionBlock(httpResponse, responseData, error);
+                                });
+                               }];
 }
 
 /*

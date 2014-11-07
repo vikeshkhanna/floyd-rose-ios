@@ -10,4 +10,17 @@
 
 @implementation Utils
 
++ (NSString *) getUpvoteLabel : (NSInteger) vote
+{
+    NSString * label = [NSString stringWithFormat:@"%ld U", (long)vote];
+    return label;
+}
+
+
++ (NSString *) getDownvoteLabel : (NSInteger) vote
+{
+    NSString * label = [NSString stringWithFormat:@"%ld D", (long)vote];
+    return label;
+}
+
 @end

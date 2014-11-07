@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SongModel.h"
 
 @interface SongTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *upvoteButton;
 @property (weak, nonatomic) IBOutlet UILabel *songNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *downvoteButton;
 @property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
+@property (strong, nonatomic) SongModel *song;
 @end

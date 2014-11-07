@@ -10,4 +10,7 @@
 
 @interface Utils : NSObject
 
++ (NSString *) getUpvoteLabel : (NSInteger) vote;
++ (NSString *) getDownvoteLabel : (NSInteger) vote;
+
 @end
