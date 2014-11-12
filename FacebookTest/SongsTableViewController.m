@@ -18,7 +18,10 @@
 
 @interface SongsTableViewController ()
 @property (strong, nonatomic) ShowModel *show;
+
 - (void) voteForSongWithId : (NSString *)songId withVote: (NSInteger)vote onCompletion:(void (^)( NSHTTPURLResponse*, NSData*, NSError*))completionBlock;
+
+- (IBAction)unwindToSongsTableViewController:(UIStoryboardSegue*) segue;
 @end
 
 @implementation SongsTableViewController
@@ -198,6 +201,10 @@
                                     completionBlock(httpResponse, responseData, error);
                                 });
                                }];
+}
+
+- (IBAction)unwindToSongsTableViewController:(UIStoryboardSegue *)segue {
+    NSLog(@"Unwound to SongsTVC.");
 }
 
 /*

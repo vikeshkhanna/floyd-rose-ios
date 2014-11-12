@@ -22,4 +22,5 @@ typedef  enum UserVote : NSInteger {
 } UserVote;
 
 #define VOTE_URL_FORMAT @"http://localhost:3000/api/song/%@/vote/%d"
+#define SPOTIFY_SEARCH_FORMAT @"https://api.spotify.com/v1/search?type=track&q=%@"
 #endif
