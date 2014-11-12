@@ -294,7 +294,11 @@
                             <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZT-wn-Mh7">
                                 <rect key="frame" x="0.0" y="453" width="42" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="play" id="gsU-Ek-Yf6"/>
+                                    <barButtonItem systemItem="play" id="gsU-Ek-Yf6">
+                                        <connections>
+                                            <action selector="playPreview:" destination="5bv-5u-ja8" id="Mh3-Pg-lhi"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>

@@ -7,6 +7,7 @@
 //
 
 #import "SongDetailsViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface SongDetailsViewController()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -15,10 +16,12 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *albumImageView;
 @property (weak, nonatomic) IBOutlet UIButton *addToPollButton;
+@property (strong, nonatomic) AVAudioPlayer* audioPlayer;
 @end
 
 @implementation SongDetailsViewController
 - (void) viewDidLoad {
+    [super viewDidLoad];
     self.titleLabel.text = self.spotifySongModel.title;
     self.artistLabel.text = self.spotifySongModel.artist.name;
     
@@ -48,6 +51,15 @@
                                    }
                                }
                            }];
+    
+}
+- (IBAction)playPreview:(UIBarButtonItem *)sender {
+    // Initialize the player
+    // TODO: Async, pre-load and cache sound.
+    NSURL *url = [NSURL URLWithString:self.spotifySongModel.preview_url];
+    NSData *soundData = [NSData dataWithContentsOfURL:url];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundData error:nil];
+    [self.audioPlayer play];
 
 }
 @end
